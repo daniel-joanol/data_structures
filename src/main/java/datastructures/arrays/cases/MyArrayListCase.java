@@ -1,4 +1,6 @@
-package datastructures.arrays;
+package datastructures.arrays.cases;
+
+import datastructures.arrays.MyArrayList;
 
 public final class MyArrayListCase {
   private MyArrayListCase() {

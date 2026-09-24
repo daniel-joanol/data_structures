@@ -1,6 +1,7 @@
 package datastructures;
 
-import datastructures.arrays.MyArrayListCase;
+import datastructures.arrays.cases.MyArrayListCase;
+import datastructures.arrays.cases.MySortedArrayCase;
 
 public final class App {
   private App() {
@@ -8,5 +9,6 @@ public final class App {
 
   public static void main(String[] args) {
     //MyArrayListCase.run();
+    //MySortedArrayCase.run();
   }
 }
