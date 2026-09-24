@@ -1,7 +1,7 @@
 package datastructures.arrays;
 
-public final class ArrayCase {
-  private ArrayCase() {
+public final class MyArrayListCase {
+  private MyArrayListCase() {
   }
 
   public static void run() {
