@@ -103,10 +103,15 @@ Use a sorted array when membership checks, ordered iteration, or range queries a
 A circular array is a fixed-size array that treats the position after its last slot as the first slot again. It is commonly used to implement a queue or circular buffer without shifting elements.
 
 ```text
-         head             tail
-          v                v
-[D, E, null, null, A, B, C]
-         ^ wrap around ^
+[A, B, C, D, E, null, null]
+
+                 [A] <- head (position 0)
+                  /                      \
+              [null]                    [B]
+              /                            \
+ [null] <- tail                         [C]
+              \                            /
+                [E] ----------- [D]
 ```
 
 ### How It Works
