@@ -95,3 +95,54 @@ Use a sorted array when membership checks, ordered iteration, or range queries a
 - The duplicate-value policy must be defined.
 - Capacity management is still required.
 - A balanced tree is often a better choice when frequent insertions and removals are required.
+
+---
+
+## CircularArray
+
+A circular array is a fixed-size array that treats the position after its last slot as the first slot again. It is commonly used to implement a queue or circular buffer without shifting elements.
+
+### How It Works
+
+- Store elements in an internal array and track the positions of the first element (`head`) and the next open slot (`tail`).
+
+```text
+[A, B, C, D, E, null, null] has capacity 7 with head [0]: A and tail [5]: null
+[A, B, C, D, E, F, G] has capacity 7 with head [0]: A and tail [0]: A (full)
+```
+
+- Advance positions with modulo arithmetic: `(index + 1) % capacity`.
+- Add an element at `tail`, then advance `tail`.
+- Remove an element from `head`, clear its slot, then advance `head`.
+- Track `size` to distinguish an empty array from a full one, because both can make `head` and `tail` equal.
+
+### When It Is Used
+
+Use a circular array when values are added and removed in first-in, first-out order and the collection has a known or bounded capacity. Typical examples include queues, rolling logs, streaming buffers, and round-robin scheduling.
+
+### Complexity
+
+| Operation | Cost | Why |
+| --- | --- | --- |
+| Add at tail | $O(1)$ | Write at the next open position |
+| Remove from head | $O(1)$ | Read and clear the first position |
+| Peek at head | $O(1)$ | `head` identifies the first value |
+| `get(index)` | $O(1)$ | Convert the logical index to a wrapped array index |
+| `contains(value)` | $O(n)$ | Values may need to be checked one by one |
+
+### Pros
+
+- Adds and removes values without shifting elements.
+- Reuses freed slots efficiently through wraparound.
+- Provides predictable memory usage for bounded collections.
+- Supports constant-time queue operations.
+
+### Cons
+
+- Fixed capacity requires a policy for full buffers.
+- Wrapped logical order is less intuitive than a regular array layout.
+- Random insertions and removals still require shifting elements.
+- Correctly handling empty and full states requires tracking additional state.
+
+---
+
