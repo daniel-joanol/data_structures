@@ -106,11 +106,13 @@ A circular array is a fixed-size array that treats the position after its last s
 array: [A, B, C, D, E, null, null]
 
 circular representation:
-                 [A] <- head (position 0)
-                /                       \
-         [null] <- tail                 [B]
-                \                       /
-                [E] ---------- [D] -- [C]
+                 [A] <- head
+                /          \
+         [null] <- tail    [B]
+                \          /
+                [E]      [C] 
+                  \     /           
+                    [D] 
 ```
 
 ### How It Works
