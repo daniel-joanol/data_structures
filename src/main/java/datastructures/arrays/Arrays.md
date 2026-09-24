@@ -48,6 +48,8 @@ Use an array list for an ordered collection that needs fast indexed access and o
 - Resizing temporarily allocates a new, larger array.
 - Unused capacity consumes some memory.
 
+---
+
 ## SortedArray
 
 A sorted array keeps its elements in ascending or descending order at all times.
