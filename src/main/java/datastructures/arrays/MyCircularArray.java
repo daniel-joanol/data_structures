@@ -33,6 +33,7 @@ public final class MyCircularArray<T> {
       throw new IllegalStateException("Circular array is empty");
     }
 
+    // FIFO: remove the oldest value at the head, then advance it to the next position.
     T removedElement = (T) elements[head];
     elements[head] = null;
     head = nextIndex(head);
@@ -46,12 +47,14 @@ public final class MyCircularArray<T> {
       throw new IllegalStateException("Circular array is empty");
     }
 
+    // FIFO: read the oldest value at the head without advancing it.
     return (T) elements[head];
   }
 
   @SuppressWarnings("unchecked")
   public T get(int index) {
     checkIndex(index);
+    // Head moves as values are removed, so translate the logical index to its wrapped array position.
     return (T) elements[(head + index) % elements.length];
   }
 
@@ -92,7 +95,9 @@ public final class MyCircularArray<T> {
       values[index] = get(index);
     }
 
-    return String.format("%s (head: %d, tail: %d)", Arrays.toString(values), head, tail);
+    return String.format(
+      "%s (head [%d]: %s, tail [%d]: %s)",
+      Arrays.toString(values), head, elements[head], tail, elements[tail]);
   }
 
   private int nextIndex(int index) {

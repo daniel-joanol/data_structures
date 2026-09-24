@@ -22,8 +22,18 @@ public final class MyCircularArrayCase {
     System.out.println("Topic at index 2: " + topics.get(2));
     System.out.println("Contains D: " + topics.contains("D"));
     System.out.println("Circular array is full: " + topics.isFull());
+    topics.add("E");
+    System.out.println("Circular array is full: " + topics.isFull());
+    System.out.println("Topics full: " + topics);
 
+    try {
+      topics.add("F");
+    } catch (IllegalStateException e) {
+      System.out.println("Exception caught: " + e.getMessage());
+    }
+  
     topics.clear();
     System.out.println("Topics after clear: " + topics);
+    System.out.println("Circular array is empty: " + topics.isEmpty());
   }
 }
