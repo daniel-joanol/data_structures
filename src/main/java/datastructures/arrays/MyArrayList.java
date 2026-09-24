@@ -1,5 +1,6 @@
 package datastructures.arrays;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public final class MyArrayList<T> {
@@ -89,6 +90,11 @@ public final class MyArrayList<T> {
     }
 
     size = 0;
+  }
+
+  @Override
+  public String toString() {
+    return Arrays.toString(Arrays.copyOf(elements, size));
   }
 
   private void ensureCapacity(int requiredCapacity) {

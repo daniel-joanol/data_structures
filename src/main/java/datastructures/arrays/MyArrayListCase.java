@@ -6,9 +6,12 @@ public final class MyArrayListCase {
 
   public static void run() {
     MyArrayList<String> topics = new MyArrayList<>(2);
+    System.out.println("Topics before adding: " + topics);
     topics.add("Arrays");
     topics.add("Linked lists");
+    System.out.println("Topics after adding: " + topics);
     topics.add(1, "Stacks");
+    System.out.println("Topics after adding with index 1: " + topics);
 
     System.out.println("First topic: " + topics.get(0));
     System.out.println("Number of topics: " + topics.size());
@@ -20,8 +23,9 @@ public final class MyArrayListCase {
     topics.remove(2);
     System.out.println("Number of topics after removal: " + topics.size());
     System.out.println("Last topic after removal: " + topics.get(topics.size() - 1));
+    System.out.println("Topics: " + topics);
 
     topics.clear();
-    System.out.println("Number of topics after clearing: " + topics.size());
+    System.out.println("Topics after clear: " + topics);
   }
 }
