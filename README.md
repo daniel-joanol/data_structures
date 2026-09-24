@@ -18,15 +18,13 @@ src/
 
 Add each implementation to the package that matches its category. For example, a custom stack belongs in `stack`.
 
-## Study Roadmap
+## Custom Data Structure Roadmap
 
-Implement the structures in roughly this order. Start with the core operations before adding convenience methods or optimizations.
+This roadmap lists the planned data structure implementations in a suggested order. Each implementation begins with its core operations before expanding to convenience methods or optimizations.
 
 ### Arrays (`arrays`)
 
-- `ArrayCase`: fixed-size primitive and reference arrays
-- `MatrixCase`: two-dimensional and jagged arrays
-- `MyArrayList`: dynamically resized array with indexed access
+- `ArrayList`: dynamically resized array with indexed access
 - `SortedArray`: ordered insertion and binary search
 - `CircularArray`: wraparound indexing used by queues and deques
 - `SparseMatrix`: map-backed representation for mostly empty matrices
@@ -72,14 +70,11 @@ Maps deserve their own section: they store key-value pairs and underpin fast loo
 ### Graphs (`graph`)
 
 - `Graph`: adjacency-list and adjacency-matrix representations
-- `BreadthFirstSearch`: traversal using a queue
-- `DepthFirstSearch`: traversal using a stack or recursion
-- `TopologicalSort`: ordering a directed acyclic graph
 - `UnionFind`: disjoint-set structure for connectivity checks
 
 ## Suggested First Milestone
 
-Finish `MyArrayList`, `SinglyLinkedList`, `ArrayStack`, `CircularQueue`, `HashMap`, `BinarySearchTree`, and an adjacency-list `Graph`. These cover the core operations and build the foundation for the advanced structures above.
+Finish `ArrayList`, `SinglyLinkedList`, `ArrayStack`, `CircularQueue`, `HashMap`, `BinarySearchTree`, and an adjacency-list `Graph`. These cover the core operations and build the foundation for the advanced structures above.
 
 ## Requirements
 
