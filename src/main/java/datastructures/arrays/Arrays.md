@@ -146,3 +146,50 @@ Use a circular array when values are added and removed in first-in, first-out or
 
 ---
 
+## SparseMatrix
+
+A sparse matrix is a two-dimensional matrix in which most values are the default value, usually `0`. Instead of allocating space for every row and column position, it stores only the non-default entries and their coordinates.
+
+```text
+0 0 0 5
+0 0 0 0
+2 0 0 0
+
+Stored entries: (0, 3) = 5, (2, 0) = 2
+```
+
+### How It Works
+
+- Represent each stored value with its row index, column index, and value.
+- Keep those entries in an array or array-backed list, often ordered by row and then column.
+- Return the default value when a requested coordinate has no stored entry.
+- Insert or remove an entry when a value changes from or to the default value.
+
+### When It Is Used
+
+Use a sparse matrix when a matrix has many rows and columns but relatively few meaningful values. Common examples include graph adjacency matrices, grid-based simulations, recommendation data, and scientific datasets with many zero measurements.
+
+### Complexity
+
+The cost depends on the representation. With an ordered array of stored entries, where $k$ is the number of non-default values:
+
+| Operation | Cost | Why |
+| --- | --- | --- |
+| Read a value | $O(\log k)$ | Binary search locates a stored coordinate |
+| Update a stored value | $O(\log k)$ | Find the coordinate, then replace its value |
+| Insert or remove an entry | $O(k)$ | Array entries may need to shift |
+| Iterate stored values | $O(k)$ | Only non-default entries are visited |
+| Space | $O(k)$ | Storage scales with meaningful values |
+
+### Pros
+
+- Uses much less memory when non-default values are rare.
+- Iterating meaningful values avoids scanning empty positions.
+- Can represent very large logical matrices when $k$ is small.
+
+### Cons
+
+- Coordinate lookups are less direct than in a regular two-dimensional array.
+- Inserting or removing entries in an array-backed representation may shift values.
+- It is inefficient for dense matrices because coordinate metadata adds overhead.
+

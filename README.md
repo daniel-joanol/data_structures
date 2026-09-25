@@ -72,10 +72,6 @@ Maps deserve their own section: they store key-value pairs and underpin fast loo
 - `Graph`: adjacency-list and adjacency-matrix representations
 - `UnionFind`: disjoint-set structure for connectivity checks
 
-## Suggested First Milestone
-
-Finish `ArrayList`, `SinglyLinkedList`, `ArrayStack`, `CircularQueue`, `HashMap`, `BinarySearchTree`, and an adjacency-list `Graph`. These cover the core operations and build the foundation for the advanced structures above.
-
 ## Requirements
 
 - JDK 21
