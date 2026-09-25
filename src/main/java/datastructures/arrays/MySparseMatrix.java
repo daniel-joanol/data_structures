@@ -86,6 +86,7 @@ public final class MySparseMatrix<T> {
     int low = 0;
     int high = size - 1;
 
+    // Binary-searches ordered coordinates and returns a negative insertion index when none exists.
     while (low <= high) {
       int middle = (low + high) >>> 1;
       Entry<T> entry = entryAt(middle);
