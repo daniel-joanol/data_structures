@@ -4,6 +4,7 @@ import datastructures.arrays.cases.MyArrayListCase;
 import datastructures.arrays.cases.MyCircularArrayCase;
 import datastructures.arrays.cases.MySparseMatrixCase;
 import datastructures.arrays.cases.MySortedArrayCase;
+import datastructures.linkedlist.cases.SinglyLinkedListCase;
 
 public final class App {
   private App() {
@@ -17,5 +18,7 @@ public final class App {
     //MyCircularArrayCase.run();
     //MySparseMatrixCase.run();
 
+    // LINKED LISTS
+    //SinglyLinkedListCase.run();
   }
 }
