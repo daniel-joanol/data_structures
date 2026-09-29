@@ -2,8 +2,8 @@ package datastructures.arrays.cases;
 
 import datastructures.arrays.MyCircularArray;
 
-public final class MyCircularArrayCase {
-  private MyCircularArrayCase() {
+public final class CircularArrayCase {
+  private CircularArrayCase() {
   }
 
   public static void run() {

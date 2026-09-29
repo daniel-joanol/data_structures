@@ -2,8 +2,8 @@ package datastructures.arrays.cases;
 
 import datastructures.arrays.MySparseMatrix;
 
-public final class MySparseMatrixCase {
-  private MySparseMatrixCase() {
+public final class SparseMatrixCase {
+  private SparseMatrixCase() {
   }
 
   public static void run() {

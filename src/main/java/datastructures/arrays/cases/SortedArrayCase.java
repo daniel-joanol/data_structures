@@ -2,8 +2,8 @@ package datastructures.arrays.cases;
 
 import datastructures.arrays.MySortedArray;
 
-public final class MySortedArrayCase {
-  private MySortedArrayCase() {
+public final class SortedArrayCase {
+  private SortedArrayCase() {
   }
 
   public static void run() {
