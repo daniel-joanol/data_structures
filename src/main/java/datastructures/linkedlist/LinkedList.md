@@ -60,3 +60,60 @@ System.out.println(topics); // [B, C]
 ```
 
 See `datastructures.linkedlist.cases.SinglyLinkedListCase` for a runnable example.
+
+## Doubly Linked List
+
+`DoubleLinkedList<T>` stores `head`, `tail`, and `size` like a singly linked list, but every node also references its previous node. That allows indexed operations to traverse from the nearer end of the list.
+
+```text
+null <- [A] <-> [B] <-> [C] -> null
+				 ^                 ^
+			 head               tail
+```
+
+### Operations
+
+| Operation | Description | Time complexity |
+| --- | --- | --- |
+| `add(element)` | Appends an element to the tail. | $O(1)$ |
+| `add(index, element)` | Inserts an element at an index; index `0` prepends and `size()` appends. | $O(n)$ |
+| `get(index)` / `set(index, element)` | Traverses from the nearer end to access or replace an element. | $O(n)$ |
+| `remove(index)` | Unlinks an element using its adjacent nodes. | $O(n)$ |
+| `contains(element)` / `indexOf(element)` | Searches the list from the head. | $O(n)$ |
+| `size()` / `isEmpty()` | Returns the list state. | $O(1)$ |
+| `clear()` | Removes every link and resets the list. | $O(n)$ |
+
+The list accepts `null` elements and compares values with `Objects.equals`. Invalid indexes throw `IndexOutOfBoundsException`.
+
+### When It Is Used
+
+Use a doubly linked list when insertions or removals near either end are common, or when backward traversal is useful. The extra previous-node reference costs more memory than a singly linked list but avoids retraversing from the head for positions near the tail.
+
+### Pros
+
+- Traversal can begin at either the head or tail, reducing work for positions near the end.
+- Removing a known node only updates its adjacent links.
+- Prepending and appending are both $O(1)$ while head and tail are tracked.
+- Backward traversal is supported directly through previous-node references.
+
+### Cons
+
+- Each node stores an additional reference, increasing memory usage.
+- Insertion and removal must update both previous and next links, making the implementation more complex.
+- Indexed access still requires traversal and is $O(n)$.
+- Nodes are not contiguous in memory, which is typically less cache-friendly than an array.
+
+### Example
+
+```java
+DoubleLinkedList<String> topics = new DoubleLinkedList<>();
+topics.add("A");
+topics.add("C");
+topics.add(1, "B");
+
+System.out.println(topics); // [A, B, C]
+topics.remove(2);
+System.out.println(topics); // [A, B]
+```
+
+See `datastructures.linkedlist.cases.DoubleLinkedListCase` for a runnable example.
