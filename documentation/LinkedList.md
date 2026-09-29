@@ -61,6 +61,8 @@ System.out.println(topics); // [B, C]
 
 See `datastructures.linkedlist.cases.SinglyLinkedListCase` for a runnable example.
 
+---
+
 ## Doubly Linked List
 
 `DoubleLinkedList<T>` stores `head`, `tail`, and `size` like a singly linked list, but every node also references its previous node. That allows indexed operations to traverse from the nearer end of the list.
@@ -117,3 +119,66 @@ System.out.println(topics); // [A, B]
 ```
 
 See `datastructures.linkedlist.cases.DoubleLinkedListCase` for a runnable example.
+
+---
+
+## Circular Linked List
+
+`CircularLinkedList<T>` stores `head`, `tail`, and `size`. The tail's next reference points back to the head, so the nodes form a closed loop. Operations that traverse the list use the known size as their stopping condition.
+
+```text
+head                              tail
+ |                                 |
+ v                                 v
+[A | next] -> [B | next] -> [C | next]
+ ^                                 |
+ |_________________________________|
+```
+
+### Operations
+
+| Operation | Description | Time complexity |
+| --- | --- | --- |
+| `add(element)` | Appends an element to the tail and links it to the head. | $O(1)$ |
+| `add(index, element)` | Inserts an element at an index; index `0` prepends and `size()` appends. | $O(n)$ |
+| `get(index)` | Returns the element at an index. | $O(n)$ |
+| `set(index, element)` | Replaces and returns the element at an index. | $O(n)$ |
+| `remove(index)` | Removes and returns the element at an index. | $O(n)$ |
+| `contains(element)` / `indexOf(element)` | Searches at most `size()` nodes from the head. | $O(n)$ |
+| `size()` / `isEmpty()` | Returns the list state. | $O(1)$ |
+| `clear()` | Breaks the circular link and removes every node link. | $O(n)$ |
+
+The list accepts `null` elements and compares values with `Objects.equals`. Invalid indexes throw `IndexOutOfBoundsException`.
+
+### When It Is Used
+
+Use a circular linked list when the collection should naturally repeat from its last element back to its first. It is useful for round-robin scheduling, turn rotation, circular buffers, and repeatedly cycling through a fixed or changing collection.
+
+### Pros
+
+- Moving from the tail to the head is direct because the tail links back to the head.
+- Appending and prepending are $O(1)$ while head and tail are tracked.
+- Round-robin traversal does not need a separate reset step at the end of the list.
+- The list grows node by node, so it does not need to resize a backing array.
+
+### Cons
+
+- Traversal must be bounded explicitly because there is no `null` next reference at the end.
+- Indexed reads, updates, insertions, and removals still require traversal and are $O(n)$.
+- Each node stores an extra reference, increasing memory overhead compared with an array.
+- Incorrect link updates can make every subsequent traversal cycle incorrectly or indefinitely.
+
+### Example
+
+```java
+CircularLinkedList<String> topics = new CircularLinkedList<>();
+topics.add("A");
+topics.add("C");
+topics.add(1, "B");
+
+System.out.println(topics); // [A, B, C]
+topics.remove(2);
+System.out.println(topics); // [A, B]
+```
+
+See `datastructures.linkedlist.cases.CircularLinkedListCase` for a runnable example.
