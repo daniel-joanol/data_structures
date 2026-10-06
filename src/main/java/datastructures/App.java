@@ -8,6 +8,7 @@ import datastructures.linkedlist.cases.CircularLinkedListCase;
 import datastructures.linkedlist.cases.DoubleLinkedListCase;
 import datastructures.linkedlist.cases.SinglyLinkedListCase;
 import datastructures.stack.cases.ArrayStackCase;
+import datastructures.stack.cases.LinkedStackCase;
 
 public final class App {
   private App() {
@@ -28,5 +29,6 @@ public final class App {
 
     // STACKS
     //ArrayStackCase.run();
+    //LinkedStackCase.run();
   }
 }
