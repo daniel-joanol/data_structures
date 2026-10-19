@@ -1,6 +1,6 @@
 # Queues
 
-A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array.
+A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, and `CircularQueue<T>` uses a fixed-capacity ring buffer.
 
 ## ArrayQueue
 
@@ -36,3 +36,38 @@ System.out.println(printJobs.peek()); // Invoice
 - Spare capacity can use more memory than the current number of elements requires.
 
 See `datastructures.queue.cases.ArrayQueueCase` for a runnable example.
+
+## CircularQueue
+
+- `enqueue(element)` adds an element to the back in $O(1)$ time.
+- `dequeue()` removes and returns the front element in $O(1)$ time.
+- `peek()` returns the front element without removing it in $O(1)$ time.
+- `size()`, `capacity()`, `isEmpty()`, `isFull()`, and `clear()` report or reset the queue state.
+
+The capacity is fixed at construction and must be positive, otherwise `IllegalArgumentException` is thrown. The head index and the size determine where the next element goes, so positions wrap around to the start of the array and freed slots are reused. Calling `enqueue()` on a full queue throws `IllegalStateException`; calling `dequeue()` or `peek()` on an empty queue throws `NoSuchElementException`.
+
+### When It Is Used
+
+A fixed-size buffer, such as a stream of sensor readings or a bounded task backlog, can use a `CircularQueue` so memory use stays constant.
+
+```java
+CircularQueue<String> buffer = new CircularQueue<>(3);
+buffer.enqueue("A");
+buffer.enqueue("B");
+buffer.enqueue("C");
+
+System.out.println(buffer.dequeue()); // A
+buffer.enqueue("D"); // reuses the freed slot
+System.out.println(buffer.peek()); // B
+```
+
+### Pros
+
+- Every operation takes $O(1)$ time, with no resizing.
+- Memory use is fixed and predictable.
+
+### Cons
+
+- The capacity cannot change, so `enqueue` fails when the queue is full.
+
+See `datastructures.queue.cases.CircularQueueCase` for a runnable example.
