@@ -1,6 +1,6 @@
 # Queues
 
-A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, and `CircularQueue<T>` uses a fixed-capacity ring buffer.
+A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, and `CircularQueue<T>` uses a fixed-capacity ring buffer, and `LinkedQueue<T>` uses a singly linked list.
 
 ## ArrayQueue
 
@@ -71,3 +71,36 @@ System.out.println(buffer.peek()); // B
 - The capacity cannot change, so `enqueue` fails when the queue is full.
 
 See `datastructures.queue.cases.CircularQueueCase` for a runnable example.
+
+## LinkedQueue
+
+- `enqueue(element)` adds an element to the back in $O(1)$ time.
+- `dequeue()` removes and returns the front element in $O(1)$ time.
+- `peek()` returns the front element without removing it in $O(1)$ time.
+- `size()`, `isEmpty()`, and `clear()` report or reset the queue state.
+
+The queue keeps references to both the head and the tail of a singly linked list, so adding to the back and removing from the front never shift or copy elements. Calling `dequeue()` or `peek()` on an empty queue throws `NoSuchElementException`.
+
+### When It Is Used
+
+A customer service line can use a `LinkedQueue` when the number of waiting customers is unpredictable and has no fixed upper bound.
+
+```java
+LinkedQueue<String> customers = new LinkedQueue<>();
+customers.enqueue("Alice");
+customers.enqueue("Bob");
+
+System.out.println(customers.dequeue()); // Alice
+System.out.println(customers.peek()); // Bob
+```
+
+### Pros
+
+- Every operation takes $O(1)$ time, with no resizing or copying.
+- It grows one node at a time, so no capacity needs to be chosen.
+
+### Cons
+
+- Each element needs a separate node, which uses more memory and is less cache-friendly than an array.
+
+See `datastructures.queue.cases.LinkedQueueCase` for a runnable example.

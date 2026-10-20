@@ -9,6 +9,7 @@ import datastructures.linkedlist.cases.DoubleLinkedListCase;
 import datastructures.linkedlist.cases.SinglyLinkedListCase;
 import datastructures.queue.cases.ArrayQueueCase;
 import datastructures.queue.cases.CircularQueueCase;
+import datastructures.queue.cases.LinkedQueueCase;
 import datastructures.stack.cases.ArrayStackCase;
 import datastructures.stack.cases.LinkedStackCase;
 import datastructures.stack.cases.MinStackCase;
@@ -37,6 +38,7 @@ public final class App {
 
     // QUEUES
     //ArrayQueueCase.run();
-    CircularQueueCase.run();
+    //CircularQueueCase.run();
+    LinkedQueueCase.run();
   }
 }
