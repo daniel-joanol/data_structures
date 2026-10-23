@@ -1,6 +1,6 @@
 # Queues
 
-A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, and `CircularQueue<T>` uses a fixed-capacity ring buffer, and `LinkedQueue<T>` uses a singly linked list.
+A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, `CircularQueue<T>` uses a fixed-capacity ring buffer, `LinkedQueue<T>` uses a singly linked list, and `Deque<T>` is a double-ended queue backed by a resizable circular array.
 
 ## ArrayQueue
 
@@ -104,3 +104,38 @@ System.out.println(customers.peek()); // Bob
 - Each element needs a separate node, which uses more memory and is less cache-friendly than an array.
 
 See `datastructures.queue.cases.LinkedQueueCase` for a runnable example.
+
+## Deque
+
+- `addFirst(element)` and `addLast(element)` add an element to the front or back in amortized $O(1)$ time. An occasional resize takes $O(n)$.
+- `removeFirst()` and `removeLast()` remove and return the front or back element in $O(1)$ time.
+- `peekFirst()` and `peekLast()` return the front or back element without removing it in $O(1)$ time.
+- `size()`, `isEmpty()`, and `clear()` report or reset the deque state.
+
+The deque keeps a head index into a circular array, so inserting or removing at either end wraps around instead of shifting elements. The default capacity is 8, or a positive capacity supplied to its constructor, otherwise `IllegalArgumentException` is thrown. When it fills, the backing array doubles. Calling a remove or peek method on an empty deque throws `NoSuchElementException`.
+
+### When It Is Used
+
+An undo history that also discards its oldest entries can use a `Deque`: push new actions at the back, undo from the back, and drop old actions from the front.
+
+```java
+Deque<String> history = new Deque<>();
+history.addLast("Type");
+history.addLast("Delete");
+history.addFirst("Open");
+
+System.out.println(history.removeLast()); // Delete
+System.out.println(history.peekFirst()); // Open
+```
+
+### Pros
+
+- Both ends support $O(1)$ insertion and removal, so it works as a queue or a stack.
+- Array storage is compact and cache-friendly.
+
+### Cons
+
+- Growing the backing array occasionally copies its elements, making an individual add take $O(n)$ time.
+- Access to the middle is not supported.
+
+See `datastructures.queue.cases.DequeCase` for a runnable example.
