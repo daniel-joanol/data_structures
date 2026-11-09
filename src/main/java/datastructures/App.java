@@ -11,6 +11,7 @@ import datastructures.queue.cases.ArrayQueueCase;
 import datastructures.queue.cases.CircularQueueCase;
 import datastructures.queue.cases.DequeCase;
 import datastructures.queue.cases.LinkedQueueCase;
+import datastructures.queue.cases.PriorityQueueCase;
 import datastructures.stack.cases.ArrayStackCase;
 import datastructures.stack.cases.LinkedStackCase;
 import datastructures.stack.cases.MinStackCase;
@@ -42,5 +43,6 @@ public final class App {
     //CircularQueueCase.run();
     //LinkedQueueCase.run();
     //DequeCase.run();
+    //PriorityQueueCase.run();
   }
 }

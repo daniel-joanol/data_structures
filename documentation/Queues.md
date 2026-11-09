@@ -1,6 +1,6 @@
 # Queues
 
-A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, `CircularQueue<T>` uses a fixed-capacity ring buffer, `LinkedQueue<T>` uses a singly linked list, and `Deque<T>` is a double-ended queue backed by a resizable circular array.
+A queue stores elements in first-in, first-out (FIFO) order: the oldest element is the first one removed. `ArrayQueue<T>` uses a resizable circular array, `CircularQueue<T>` uses a fixed-capacity ring buffer, `LinkedQueue<T>` uses a singly linked list, and `Deque<T>` is a double-ended queue backed by a resizable circular array. `PriorityQueue<T>` is the exception to FIFO order: it removes the element with the highest priority first.
 
 ## ArrayQueue
 
@@ -139,3 +139,39 @@ System.out.println(history.peekFirst()); // Open
 - Access to the middle is not supported.
 
 See `datastructures.queue.cases.DequeCase` for a runnable example.
+
+## PriorityQueue
+
+- `enqueue(element)` adds an element in $O(\log n)$ time.
+- `dequeue()` removes and returns the highest-priority element in $O(\log n)$ time.
+- `peek()` returns the highest-priority element without removing it in $O(1)$ time.
+- `size()`, `isEmpty()`, and `clear()` report or reset the queue state.
+
+The queue is a binary min-heap stored in an array. The children of index $i$ are at $2i + 1$ and $2i + 2$, and its parent is at $\lfloor (i - 1) / 2 \rfloor$. Adding an element sifts it up toward the root, and removing the root moves the last element there and sifts it down. By default, the smallest element by natural ordering has the highest priority; pass a `Comparator` to change that, for example a reversed comparator for a max-priority queue. The initial capacity must be at least 1 (default 10) and doubles when full, otherwise `IllegalArgumentException` is thrown. `enqueue(null)` throws `NullPointerException`, and calling `dequeue()` or `peek()` on an empty queue throws `NoSuchElementException`. Elements with equal priority are not guaranteed to leave in insertion order, and `toString()` shows heap order, not sorted order.
+
+### When It Is Used
+
+A task scheduler can use a `PriorityQueue` to always run the most urgent task next, regardless of arrival order.
+
+```java
+PriorityQueue<Integer> tasks = new PriorityQueue<>();
+tasks.enqueue(5);
+tasks.enqueue(1);
+tasks.enqueue(3);
+
+System.out.println(tasks.peek()); // 1
+System.out.println(tasks.dequeue()); // 1
+System.out.println(tasks.dequeue()); // 3
+```
+
+### Pros
+
+- Finding the highest-priority element is $O(1)$, and insertion and removal stay $O(\log n)$.
+- Array storage is compact, without a node per element.
+
+### Cons
+
+- It does not preserve FIFO order, and equal priorities are not stable.
+- Searching for or removing an arbitrary element is not supported.
+
+See `datastructures.queue.cases.PriorityQueueCase` for a runnable example.
